@@ -15,6 +15,8 @@
     // 利用するデータベースを指定（存在しなければ生成）
     var TestClass = ncmb.DataStore("FetchTest");
 
+    let key = "score";
+
     function register() {
       // 登録するレコードを用意
       var testClass = new TestClass();
@@ -25,7 +27,7 @@
       // レコードをデータベースに登録
       testClass.save()
         .then(function(m) {
-          $("#message").html("New object created with objectId: " + testClass.objectId);
+          $("#message").html("登録完了");
         })
         .catch(function(err) {
           $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
@@ -64,6 +66,25 @@
         })
 
     }
+
+    function sortData() {
+      TestClass.order("text", false).fetchAll()
+        .then(function(results) {
+          var msg = "<table><tr><th>体重(kg)</th><th>更新日</th></tr>";
+          for (var i = 0; i < results.length; i++) {
+            var data = results[i].get("text");
+            var update = results[i].get("updateDate");
+            msg += "<tr><td>" + data + "</td><td>" + update + "</td></tr>";
+          }
+          msg += "</table>"
+          $("#message").html(msg);
+        })
+    .catch(function(error) {
+      $("#display").removeClass();
+      $("#display").addClass("bg-warning");
+      $("#display").html("delete fail:" + JSON.stringify(error));
+    })
+    }
   </script>
 </head>
 
@@ -78,7 +99,7 @@
     <button id="btnB" class="btn" onclick="fetch()">Fetch</button>
     <button id="btnC" class="btn" onclick="fetchAll()">Fetch All</button>
     <button id="btnD" class="btn" onclick="deleteData()">Delete</button>
-
+    <button id="btnE" class="btn" onclick="sortData()">降順</button>
   </div>
 
 
