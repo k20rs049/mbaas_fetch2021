@@ -79,11 +79,11 @@
           msg += "</table>"
           $("#message").html(msg);
         })
-    .catch(function(error) {
-      $("#display").removeClass();
-      $("#display").addClass("bg-warning");
-      $("#display").html("delete fail:" + JSON.stringify(error));
-    })
+        .catch(function(error) {
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("delete fail:" + JSON.stringify(error));
+        })
     }
 
     function sortData_2() {
@@ -98,11 +98,35 @@
           msg += "</table>"
           $("#message").html(msg);
         })
-    .catch(function(error) {
-      $("#display").removeClass();
-      $("#display").addClass("bg-warning");
-      $("#display").html("delete fail:" + JSON.stringify(error));
-    })
+        .catch(function(error) {
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("delete fail:" + JSON.stringify(error));
+        })
+    }
+  </script>
+
+  <span id="view_clock"></span>
+
+  <script type="text/javascript">
+    timerID = setInterval('clock()', 500); //0.5秒毎にclock()を実行
+
+    function clock() {
+      document.getElementById("view_clock").innerHTML = getNow();
+    }
+
+    function getNow() {
+      var now = new Date();
+      var year = now.getFullYear();
+      var mon = now.getMonth() + 1; //１を足すこと
+      var day = now.getDate();
+      var hour = now.getHours();
+      var min = now.getMinutes();
+      var sec = now.getSeconds();
+
+      //出力用
+      var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" + sec + "秒";
+      return s;
     }
   </script>
 </head>
@@ -121,7 +145,6 @@
     <button id="btnE" class="btn" onclick="sortData()">降順</button>
     <button id="btnF" class="btn" onclick="sortData_2()">昇順</button>
   </div>
-
 
   <div id="message">message area </div>
 </body>
