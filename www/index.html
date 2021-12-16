@@ -85,6 +85,25 @@
       $("#display").html("delete fail:" + JSON.stringify(error));
     })
     }
+
+    function sortData_2() {
+      TestClass.order("text", false).fetchAll()
+        .then(function(results) {
+          var msg = "<table><tr><th>体重(kg)</th><th>更新日</th></tr>";
+          for (var i = 0; i < results.length; i++) {
+            var data = results[i].get("text");
+            var update = results[i].get("updateDate");
+            msg += "<tr><td>" + data + "</td><td>" + update + "</td></tr>";
+          }
+          msg += "</table>"
+          $("#message").html(msg);
+        })
+    .catch(function(error) {
+      $("#display").removeClass();
+      $("#display").addClass("bg-warning");
+      $("#display").html("delete fail:" + JSON.stringify(error));
+    })
+    }
   </script>
 </head>
 
