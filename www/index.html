@@ -68,7 +68,7 @@
     }
 
     function sortData() {
-      TestClass.order("text", false).fetchAll()
+      TestClass.order("text", true).fetchAll()
         .then(function(results) {
           var msg = "<table><tr><th>体重(kg)</th><th>更新日</th></tr>";
           for (var i = 0; i < results.length; i++) {
@@ -100,6 +100,7 @@
     <button id="btnC" class="btn" onclick="fetchAll()">Fetch All</button>
     <button id="btnD" class="btn" onclick="deleteData()">Delete</button>
     <button id="btnE" class="btn" onclick="sortData()">降順</button>
+    <button id="btnF" class="btn" onclick="sortData_2()">昇順</button>
   </div>
 
 
