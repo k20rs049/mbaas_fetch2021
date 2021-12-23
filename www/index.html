@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="keys.js"></script>
+  </script>
+
   <script>
     // NCMB アクセスの準備
     var ncmb = new NCMB(appKey, clientKey);
@@ -24,6 +26,7 @@
       var value = $("#value").val();
       // レコードのフィールドと値を設定
       testClass.set(key, value);
+
       // レコードをデータベースに登録
       testClass.save()
         .then(function(m) {
@@ -51,12 +54,19 @@
           var msg = "<table><tr><th>体重(kg)</th><th>更新日</th></tr>";
           for (var i = 0; i < results.length; i++) {
             var data = results[i].get("text");
+            var data2 = results[0].get("text");
+            var data3 = data2 - data;
             var update = results[i].get("updateDate");
-            msg += "<tr><td>" + data + "</td><td>" + update + "</td></tr>";
+            if(data3 < 0){
+               msg += "<tr><td>" + data  + "(" + data3 + ")" +  "</td><td>" + update + "</td></tr>";
+            }else{
+               msg += "<tr><td>" + data  + "(+" + data3 + ")" +  "</td><td>" + update + "</td></tr>";
+            }
           }
           msg += "</table>"
           $("#message").html(msg);
         })
+
     }
 
     function deleteData() {
@@ -106,6 +116,7 @@
     }
   </script>
 
+
   <span id="view_clock"></span>
 
   <script type="text/javascript">
@@ -147,6 +158,8 @@
   </div>
 
   <div id="message">message area </div>
+
+
 </body>
 
 </html>
