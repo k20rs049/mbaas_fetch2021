@@ -26,6 +26,9 @@
       var value = $("#value").val();
       // レコードのフィールドと値を設定
       testClass.set(key, value);
+      var now = new Date();
+      // var day = now.getDate();
+      var min = now.getMinutes();
 
       // レコードをデータベースに登録
       testClass.save()
@@ -149,10 +152,10 @@
     <input id="value" type="text" value="50.0">
   </div>
   <div id="button">
-    <button id="btnA" class="btn" onclick="register()">Register</button>
-    <button id="btnB" class="btn" onclick="fetch()">Fetch</button>
-    <button id="btnC" class="btn" onclick="fetchAll()">Fetch All</button>
-    <button id="btnD" class="btn" onclick="deleteData()">Delete</button>
+    <button id="btnA" class="btn" onclick="register()">登録</button>
+    <button id="btnB" class="btn" onclick="fetch()">初データ</button>
+    <button id="btnC" class="btn" onclick="fetchAll()">データ</button>
+    <button id="btnD" class="btn" onclick="deleteData()">削除</button>
     <button id="btnE" class="btn" onclick="sortData()">降順</button>
     <button id="btnF" class="btn" onclick="sortData_2()">昇順</button>
   </div>
