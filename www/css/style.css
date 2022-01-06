@@ -3,7 +3,11 @@ body {
   background-color: aqua;
 }
 h1 {
-  background-color: yellow;
+  padding: 0.4em 0.5em;
+  color: #494949;
+  background: #ecebeb;
+  border-left: solid 5px #0c84f5;
+  border-bottom: solid 3px #d7d7d7;
 }
 
 label {
@@ -30,6 +34,8 @@ input {
   border-radius: 10px;
   color: white;
   background-color: blue;
+  border-left: solid 5px #0c84f5;
+  border-bottom: solid 3px #d7d7d7;
 }
 
 #message {
